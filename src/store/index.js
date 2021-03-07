@@ -5,11 +5,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: {
+      type: Object,
+      default: null,
+    }
   },
   mutations: {
+    setUser(state, user) {
+      state.user = user;
+    },
+    unsetUser(state) {
+      state.user = null;
+    }
   },
-  actions: {
-  },
-  modules: {
-  }
+  getters: {
+    isUserAdmin: state => state.user?.admin
+
+}
 })

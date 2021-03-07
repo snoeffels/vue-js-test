@@ -80,7 +80,7 @@
       login() {
         let user = this.users.filter( e => this.username === e.username && this.password === e.password);
         if (user.length === 1 ){
-          console.log("login successfull");
+          this.$store.commit('setUser', user[0]);
         } else {
           this.loginFailedSnackbar.show = true;
         }

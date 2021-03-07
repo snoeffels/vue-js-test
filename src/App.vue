@@ -27,7 +27,9 @@
     </v-app-bar>
 
     <v-main>
-      <LoginForm v-show="!userLoggedIn"/>
+      <LoginForm v-show="!isUserLoggedIn"/>
+      <h1 v-show="$store.getters.isUserAdmin">ADMIN</h1>
+      <v-btn text @click="logout" v-show="isUserLoggedIn">Logout</v-btn>
 
     </v-main>
   </v-app>
@@ -40,6 +42,16 @@ export default {
   name: 'App',
   components: {
     LoginForm,
+  },
+  computed: {
+    isUserLoggedIn() {
+      return this.$store.state.user;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.commit("unsetUser");
+    }
   }
 };
 </script>
